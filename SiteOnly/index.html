@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Календар на българското възраждане</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Top ornamental border -->
+    <div class="ornament-border-top"></div>
+
+    <!-- Header / Navbar -->
+    <header class="header" id="header">
+        <div class="container header-inner">
+            <div class="header-ornament"><span class="ornament-diamond">&#9830;</span></div>
+            <a href="#welcome" class="logo-link">
+                <h1 class="header-title">Календар на българското възраждане</h1>
+            </a>
+            <div class="header-ornament"><span class="ornament-diamond">&#9830;</span></div>
+            <nav class="navbar">
+                <a href="#welcome" class="nav-link active" data-page="welcome">Начало</a>
+                <a href="#calendar" class="nav-link" data-page="calendar">Събития</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="divider"><span class="divider-ornament">&#10087;</span></div>
+
+    <!-- ===================== WELCOME PAGE ===================== -->
+    <section class="page active" id="page-welcome">
+        <main class="container">
+
+            <!-- Welcome Hero -->
+            <section class="welcome-hero">
+                <h2 class="welcome-title">Борбите на българите през Възраждането</h2>
+                <p class="welcome-subtitle">Интерактивен календар на събития и личности от епохата на българското възраждане</p>
+            </section>
+
+            <!-- Three Category Cards -->
+            <section class="categories">
+                <div class="category-card" data-category="church">
+                    <div class="category-image">
+                        <img src="images/tsurkva-sv-petar-i-pavel.jpg" alt="Църква Св. Петър и Павел">
+                    </div>
+                    <h3 class="category-title">Църковна борба</h3>
+                    <p class="category-desc">Борбата за независима българска църква</p>
+                </div>
+                <div class="category-card" data-category="political">
+                    <div class="category-image">
+                        <img src="images/Илюстрация на Априлското въстание..jpg" alt="Априлско въстание">
+                    </div>
+                    <h3 class="category-title">Политическа борба</h3>
+                    <p class="category-desc">Априлското въстание и революционното движение</p>
+                </div>
+                <div class="category-card" data-category="cultural">
+                    <div class="category-image">
+                        <img src="images/Историческа фотография на възрожденско училище.jpg" alt="Възрожденско училище">
+                    </div>
+                    <h3 class="category-title">Културна борба</h3>
+                    <p class="category-desc">Просвещението и българското образование</p>
+                </div>
+            </section>
+
+            <!-- 2027 Events Calendar -->
+            <section class="events-2027">
+                <h2 class="events-2027-title">Календар на събитията — 2027</h2>
+                <p class="events-2027-subtitle">Всички исторически дати от Силистра и Свищов, отбелязани в годишния календар</p>
+                <div class="events-2027-grid" id="events-2027-grid">
+                    <!-- Rendered by JS -->
+                </div>
+            </section>
+
+        </main>
+    </section>
+
+    <!-- ===================== CALENDAR PAGE ===================== -->
+    <section class="page" id="page-calendar">
+        <main class="container">
+            <section class="timeline-section">
+                <div class="timeline-header">
+                    <h2 class="timeline-title">Хронологичен лист на събитията</h2>
+                    <p class="timeline-subtitle">Всички събития и личности, наредени по дата</p>
+                    <!-- Search Bar -->
+                    <div class="calendar-search-wrap" id="calendar-search-wrap">
+                        <div class="calendar-search-inner">
+                            <span class="calendar-search-icon">&#128269;</span>
+                            <input
+                                type="text"
+                                class="calendar-search-input"
+                                id="calendar-search-input"
+                                placeholder="Търси събитие или личност…"
+                                autocomplete="off"
+                                aria-label="Търси събитие"
+                            >
+                            <button class="calendar-search-clear" id="calendar-search-clear" aria-label="Изчисти" style="display:none;">&#215;</button>
+                        </div>
+                        <div class="calendar-search-results" id="calendar-search-results" style="display:none;"></div>
+                    </div>
+                    <!-- Filter Bar -->
+                    <div class="timeline-filters">
+                        <button class="tl-filter-btn active" data-filter="all">Всички</button>
+                        <button class="tl-filter-btn" data-filter="political">Политически</button>
+                        <button class="tl-filter-btn" data-filter="church">Църковни</button>
+                        <button class="tl-filter-btn" data-filter="cultural">Просвета и култура</button>
+                    </div>
+                </div>
+                <div class="timeline-list" id="timeline-list">
+                    <!-- Rendered by JS -->
+                </div>
+            </section>
+        </main>
+    </section>
+
+    <div class="divider"><span class="divider-ornament">&#10087;</span></div>
+
+    <!-- ===================== EVENT OVERLAY / MODAL ===================== -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal" id="modal">
+            <button class="modal-close" id="modal-close" aria-label="Затвори">&times;</button>
+
+            <!-- Day events list (shown when a day has events) -->
+            <div class="modal-day-view" id="modal-day-view">
+                <h2 class="modal-day-title" id="modal-day-title"></h2>
+                <div class="modal-day-events" id="modal-day-events">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+
+            <!-- Single event detail (shown when an event is selected) -->
+            <div class="modal-event-detail" id="modal-event-detail" style="display:none;">
+                <button class="modal-back-btn" id="modal-back-btn">&#9664; Затвори</button>
+                <div class="modal-header">
+                    <div class="modal-header-text">
+                        <h2 class="modal-title" id="modal-title"></h2>
+                        <span class="modal-type-badge" id="modal-type-badge"></span>
+                    </div>
+                    <div class="modal-header-image">
+                        <img id="modal-image" src="" alt="">
+                    </div>
+                </div>
+
+                <div class="modal-divider"></div>
+
+                <p class="modal-short-desc" id="modal-short-desc"></p>
+
+                <div class="modal-details-box">
+                    <p id="modal-details"></p>
+                </div>
+
+                <!-- Mini Calendar -->
+                <div class="mini-calendar">
+                    <h4 class="mini-calendar-title" id="mini-calendar-title"></h4>
+                    <div class="mini-calendar-grid" id="mini-calendar-grid">
+                        <!-- Rendered by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer-ornament">&#10087;</div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-ornament">&#10087;</div>
+            <p class="footer-title">Календар на българското възраждане</p>
+            <p class="footer-subtitle">Проект за училищна презентация &mdash; Будител фест 2026</p>
+            <div class="footer-ornament">&#10087;</div>
+        </div>
+    </footer>
+
+    <div class="ornament-border-bottom"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
